@@ -9,11 +9,15 @@ import com.hcu.microservices.limitsservice.model.Limits;
 
 @RestController
 public class LimitsController {
-	
-	@Autowired
-	private Configuration configuration;
 
-	@GetMapping("/")
+	private final Configuration configuration;
+
+	@Autowired
+    public LimitsController(Configuration configuration) {
+        this.configuration = configuration;
+    }
+
+    @GetMapping("/")
 	public String home() {
 		return "Hello World";
 	}
