@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: limits-service:1.0
     network_mode: "host" # Use host network
     stdin_open: true
     tty: true
