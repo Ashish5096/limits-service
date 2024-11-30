@@ -2,7 +2,7 @@
 # Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 # Click nbfs://nbhost/SystemFileSystem/Templates/Other/Dockerfile to edit this template
 
-FROM adoptopenjdk/openjdk17:alpine-slim AS build
+FROM eclipse-temurin:17-jdk-focal AS build
 WORKDIR /workspace/app
 
 ARG PORT
@@ -16,7 +16,7 @@ COPY src src
 RUN ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM adoptopenjdk/openjdk17:alpine-slim
+FROM eclipse-temurin:17-jre-focal
 VOLUME /tmp
 ARG DEPENDENCY=/workspace/app/target/dependency
 COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
