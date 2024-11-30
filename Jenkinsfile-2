@@ -18,5 +18,12 @@ pipeline {
             }
 
         }
+
+        stage('Deploy Image'){
+            steps {
+                sh 'docker compose up'
+            }
+
+        }
     }
 }
